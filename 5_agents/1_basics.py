@@ -17,7 +17,7 @@ load_dotenv()
 # 使用 @tool 装饰器定义一个工具函数
 # 这个工具可以让 Agent 获取当前系统时间
 @tool
-def get_system_time(format: str = "%Y-%m-%d %H:%M:%S"):
+def get_system_time(format: str = "%Y-%m-%d %H:%M:%S"): # adjust the format to your needs
     """ 
     返回指定格式的当前日期和时间
     Args:
@@ -35,7 +35,7 @@ llm = ChatOpenAI(model="gpt-4")
 
 # 定义用户的查询
 # 这是一个需要 Agent 使用工具来回答的问题
-query = "What is the current time in London? (You are in India). Just show the current time and not the date"
+query = "What is the current time in New York? (You are in China). Just show the current time and not the date"
 
 # 从 LangChain Hub 拉取 ReAct 提示模板
 # ReAct 是一个流行的 Agent 框架，结合了推理(Reasoning)和行动(Acting)
@@ -43,6 +43,7 @@ prompt_template = hub.pull("hwchase17/react")
 
 # 定义 Agent 可以使用的工具列表
 # 这里只包含一个工具：获取系统时间
+# tools = []
 tools = [get_system_time]
 
 # 创建 ReAct Agent
